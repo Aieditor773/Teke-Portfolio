@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teke Smith | Lifestyle & Brand Portfolio</title>
+    <!-- React and Babel for running JSX in the browser -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        // Lucide Icons as SVG components since we are in a single HTML file
+        const Instagram = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>;
+        const Linkedin = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>;
+        const Mail = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>;
+        const ArrowDown = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>;
+        const Menu = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>;
+        const X = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>;
+
+        const App = () => {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+            const scrollToSection = (id) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+                setIsMenuOpen(false);
+            };
+
+            const baseUrl = "https://raw.githubusercontent.com/Aieditor773/Teke-Portfolio/d8ea6fd2c4c7df4d5449082f76b75e4245ecb7c7/";
+
+            const img = {
+                hero: `${baseUrl}hero.jpg`,
+                about: `${baseUrl}Resized_DOM02471_(2).jpeg`,
+                work3: `${baseUrl}Screenshot_20260426_185842_Photos.jpg`,
+                work4: `${baseUrl}Natural1.jpg`,
+                work5: `${baseUrl}Natural2.jpg`,
+                work6: `${baseUrl}Screenshot_20260426_184903_Photos.jpg`,
+                work7: `${baseUrl}Screenshot_20260426_184954_Photos.jpg`,
+                work8: `${baseUrl}Screenshot_20260426_185442_Photos.jpg`,
+                work9: `${baseUrl}Screenshot_20260426_185842_Photos.jpg`,
+                work10: `${baseUrl}Screenshot_20260426_185547_Photos.jpg`,
+                work11: `${baseUrl}Screenshot_20260426_185857_Photos.jpg`,
+                work12: `${baseUrl}Screenshot_20260426_190630_Photos.jpg`,
+            };
+
+            return (
+                <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-[#F9F7F2] text-[#2D2D2D] font-serif selection:bg-indigo-100 no-scrollbar">
+                    
+                    {/* NAVIGATION BAR */}
+                    <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
+                        <div className="text-xl tracking-tighter font-medium cursor-pointer" onClick={() => scrollToSection('home')}>
+                            TEKE SMITH
+                        </div>
+
+                        <div className="hidden md:flex items-center gap-10 font-sans text-[10px] tracking-[0.2em] uppercase">
+                            <button onClick={() => scrollToSection('about')} className="hover:opacity-60 transition-opacity">About</button>
+                            <button onClick={() => scrollToSection('work')} className="hover:opacity-60 transition-opacity">Portfolio</button>
+                            <button onClick={() => scrollToSection('contact')} className="hover:opacity-60 transition-opacity">Contact</button>
+                        </div>
+
+                        <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                            {isMenuOpen ? <X /> : <Menu />}
+                        </button>
+                    </nav>
+
+                    {/* MOBILE OVERLAY */}
+                    {isMenuOpen && (
+                        <div className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-8 font-sans text-xs tracking-[0.3em] uppercase">
+                            <button onClick={() => scrollToSection('home')}>Home</button>
+                            <button onClick={() => scrollToSection('about')}>About</button>
+                            <button onClick={() => scrollToSection('work')}>Portfolio</button>
+                            <button onClick={() => scrollToSection('contact')}>Contact</button>
+                        </div>
+                    )}
+
+                    {/* 01. HERO */}
+                    <section id="home" className="h-screen w-full snap-start relative flex flex-col items-center justify-center overflow-hidden bg-[#1A1A1A]">
+                        <div className="absolute inset-0 z-0">
+                            <img src={img.hero} alt="Hero" className="w-full h-full object-contain brightness-[0.85]" />
+                        </div>
+                        <div className="z-10 text-center text-white px-6">
+                            <h1 className="text-7xl md:text-9xl font-medium tracking-tighter mb-4 mix-blend-difference">TEKE SMITH</h1>
+                            <p className="text-xs md:text-sm tracking-[0.4em] font-sans uppercase font-light opacity-80 mix-blend-difference">Lifestyle & Brand Visuals</p>
+                        </div>
+                        <div className="absolute bottom-10 right-10 text-white animate-bounce cursor-pointer" onClick={() => scrollToSection('about')}>
+                            <ArrowDown />
+                        </div>
+                    </section>
+
+                    {/* 02. ABOUT */}
+                    <section id="about" className="h-screen w-full snap-start relative grid md:grid-cols-2 bg-white overflow-hidden">
+                        <div className="h-full flex flex-col justify-center px-12 md:px-24 space-y-8 order-2 md:order-1">
+                            <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-slate-400">Introduction</span>
+                            <h2 className="text-5xl md:text-6xl tracking-tight leading-none">Elevated <br/>Storytelling.</h2>
+                            <p className="font-sans text-slate-500 leading-relaxed max-w-sm">
+                                I capture the synergy between brands and their audience through a polished, lifestyle-oriented lens. Every frame is a study in authenticity.
+                            </p>
+                        </div>
+                        <div className="h-full relative order-1 md:order-2 bg-[#F4F1EA]">
+                            <img src={img.about} className="w-full h-full object-cover" alt="Portrait 2" />
+                        </div>
+                    </section>
+
+                    {/* 03. DUO LAYOUT */}
+                    <section id="work" className="h-screen w-full snap-start relative flex flex-col md:flex-row bg-[#F9F7F2]">
+                        <div className="w-full md:w-2/3 h-1/2 md:h-full p-8 md:p-16">
+                            <img src={img.work3} className="w-full h-full object-cover shadow-2xl" alt="Work 3" />
+                        </div>
+                        <div className="w-full md:w-1/3 h-1/2 md:h-full flex flex-col items-center justify-center bg-white p-8">
+                           <img src={img.work4} className="w-full h-[60%] object-cover mb-8" alt="Work 4" />
+                          <div className="text-center">
+                            <h3 className="text-xl uppercase tracking-widest font-light">Natural Clarity</h3>
+                            <p className="font-sans text-[10px] text-slate-400 mt-2 uppercase tracking-widest">Series 01</p>
+                          </div>
+                        </div>
+                    </section>
+
+                    {/* 04. FULL BLEED DRAMA - ZOOMED OUT FIX */}
+                    <section className="h-screen w-full snap-start relative overflow-hidden bg-[#1A1A1A]">
+                        <img src={img.work5} className="w-full h-full object-contain" alt="Work 5" />
+                        <div className="absolute inset-0 bg-black/10 flex items-center justify-center pointer-events-none">
+                           <h3 className="text-white text-5xl md:text-7xl font-light italic opacity-90 drop-shadow-lg text-center px-4 mix-blend-difference">The Art of Stillness.</h3>
+                        </div>
+                    </section>
+
+                    {/* 05. THREE IMAGE GRID */}
+                    <section className="h-screen w-full snap-start relative bg-white p-6 md:p-12 flex flex-col justify-center">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 h-[75%]">
+                            <div className="h-full overflow-hidden">
+                                <img src={img.work6} className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="6"/>
+                            </div>
+                            <div className="h-full hidden md:block overflow-hidden">
+                                <img src={img.work7} className="w-full h-full object-cover pt-12 hover:scale-105 transition-transform duration-700" alt="7"/>
+                            </div>
+                            <div className="h-full overflow-hidden">
+                                <img src={img.work8} className="w-full h-full object-cover pb-12 hover:scale-105 transition-transform duration-700" alt="8"/>
+                            </div>
+                        </div>
+                        <div className="mt-8 flex justify-between items-end border-t border-slate-100 pt-4">
+                            <p className="font-sans text-[10px] uppercase tracking-widest text-slate-400 font-bold">Editorial Collection</p>
+                            <div className="h-[1px] w-32 bg-slate-200"></div>
+                        </div>
+                    </section>
+
+                    {/* 06. ASYMMETRICAL VIBE */}
+                    <section className="h-screen w-full snap-start relative flex flex-col md:flex-row bg-[#F4F1EA]">
+                        <div className="w-full md:w-1/2 h-full p-12 md:p-24 bg-white flex flex-col justify-center space-y-12">
+                            <img src={img.work9} className="w-full aspect-square object-cover shadow-xl" alt="9"/>
+                            <p className="text-center font-sans text-sm italic text-slate-500 uppercase tracking-widest">"Details define the Brand."</p>
+                        </div>
+                        <div className="w-full md:w-1/2 h-full flex items-center justify-center p-8 md:p-16">
+                            <img src={img.work10} className="w-[85%] h-auto shadow-2xl" alt="10"/>
+                        </div>
+                    </section>
+
+                    {/* 07. FINAL DUO */}
+                    <section className="h-screen w-full snap-start relative flex flex-col md:flex-row bg-[#1A1A1A]">
+                        <div className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden">
+                           <img src={img.work11} className="w-full h-full object-cover opacity-60" alt="11"/>
+                        </div>
+                        <div className="w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-center px-12 md:px-24 bg-[#111] text-white space-y-8">
+                           <div className="relative overflow-hidden h-[50%]">
+                             <img src={img.work12} className="w-full h-full object-cover opacity-80" alt="12"/>
+                           </div>
+                           <div>
+                             <h3 className="text-4xl tracking-tighter">Capturing Legacy.</h3>
+                             <p className="font-sans text-xs text-slate-500 mt-2 uppercase tracking-widest">Creative Direction & Curation</p>
+                           </div>
+                        </div>
+                    </section>
+
+                    {/* 08. CONTACT SECTION */}
+                    <section id="contact" className="h-screen w-full snap-start relative bg-white flex items-center justify-center p-6 text-center">
+                        <div className="max-w-2xl space-y-12">
+                            <h2 className="text-6xl md:text-8xl tracking-tighter">LET'S <br/>CONNECT.</h2>
+                            
+                            <div className="flex flex-col items-center gap-8 py-8 border-y border-slate-100">
+                                <div className="flex justify-center items-center gap-12 text-slate-600">
+                                    <a href="#" className="hover:text-black transition-colors transform hover:scale-110 duration-200">
+                                        <Instagram />
+                                    </a>
+                                    <a href="#" className="hover:text-black transition-colors transform hover:scale-110 duration-200">
+                                        <Linkedin />
+                                    </a>
+                                    <a href="#" className="hover:text-black transition-colors transform hover:scale-110 duration-200">
+                                        <Mail />
+                                    </a>
+                                </div>
+                                
+                                <p className="font-sans text-[11px] md:text-xs tracking-[0.3em] font-bold uppercase text-slate-400 max-w-md">
+                                    AVAILABLE FOR BRAND COLLABORATIONS AND CONTENT OPPORTUNITIES.
+                                </p>
+                            </div>
+
+                            <div className="pt-12 border-t border-slate-100 font-sans text-[9px] text-slate-300 uppercase tracking-widest flex justify-between items-center px-4">
+                                <span>Chicago</span>
+                                <span>•</span>
+                                <span>Worldwide</span>
+                            </div>
+                        </div>
+                        <div className="absolute top-10 right-10 text-slate-100 text-6xl pointer-events-none select-none font-sans font-black">12</div>
+                    </section>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
